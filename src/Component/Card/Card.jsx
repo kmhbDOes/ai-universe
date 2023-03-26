@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
 import SingleData from "../SingleData/SingleData";
 
 const Card = () => {
   const [data, setData] = useState([]);
   const [showAll, setShowAll] = useState(false);
-  const handleShowALl = () => {
+  const handleShowAll = () => {
     setShowAll(true);
   };
   useEffect(() => {
@@ -30,9 +31,12 @@ const Card = () => {
           <SingleData singleData={singleData} key={singleData.id} />
         ))}
       </div>
-      <p onClick={handleShowALl}>
-        <Button>See More</Button>
-      </p>
+      {!showAll && (
+        <span onClick={handleShowAll}>
+          <Button>See More</Button>
+        </span>
+      )}
+      <Modal />
     </>
   );
 };
